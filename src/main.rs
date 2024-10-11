@@ -1,4 +1,5 @@
 fn main() {
+    add(12, 16);
     println!("Hello, world!");
 }
 
