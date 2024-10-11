@@ -1,9 +1,25 @@
-name: GitHub Actions Demo
+name: Rust CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  echo_hello_world:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "hello world!!"
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Run cargo test
+        run: cargo test --verbose
+
+      - name: Build project
+        run: cargo build --release
