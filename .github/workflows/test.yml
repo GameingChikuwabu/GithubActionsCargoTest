@@ -52,4 +52,4 @@ jobs:
           git diff --quiet || git commit -m "Add build artifacts to artifacts folder"
 
           # mainブランチにプッシュ
-          git push origin main
+          git push origin gh_pages
