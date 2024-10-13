@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      
+
 
 jobs:
   build:
@@ -30,18 +30,17 @@ jobs:
 
     # 生成物（例: target/releaseディレクトリ）をデプロイ用のブランチにコピー
       - name: Deploy to gh-pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GamingChikuwabu"
           git config --global user.email "k.56482525@gmail.com"
           
-          # デプロイ用のブランチをチェックアウト
-          git fetch origin gh-pages
-          git checkout gh-pages
+          # 生成物を追加
+          git add target/release/*
 
-          # target/releaseの生成物をコピー
-          cp -r target/release/* .
+          # 変更があればコミット
+          git diff --quiet || git commit -m "Add build artifacts"
 
-          # 変更をコミットしてプッシュ
-          git add .
-          git commit -m "Update generated files"
-          git push origin gh-pages 
+          # mainブランチにプッシュ
+          git push origin main
