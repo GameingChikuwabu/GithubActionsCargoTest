@@ -30,6 +30,12 @@ jobs:
 
       - name: Build project
         run: cargo build --release
+      
+      # 新しいフォルダを作成し、生成物をコピー
+      - name: Copy build artifacts to new folder
+        run: |
+          mkdir -p artifacts
+          cp -r target/release/* artifacts/
 
     # 生成物（例: target/releaseディレクトリ）をデプロイ用のブランチにコピー
       - name: Deploy to gh-pages branch
