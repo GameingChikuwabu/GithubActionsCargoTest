@@ -26,3 +26,21 @@ jobs:
 
       - name: Build project
         run: cargo build --release
+
+    # 生成物（例: target/releaseディレクトリ）をデプロイ用のブランチにコピー
+      - name: Deploy to gh-pages branch
+        run: |
+          git config --global user.name "GamingChikuwabu"
+          git config --global user.email "k.56482525@gmail.com"
+          
+          # デプロイ用のブランチをチェックアウト
+          git fetch origin gh-pages
+          git checkout gh-pages
+
+          # target/releaseの生成物をコピー
+          cp -r target/release/* .
+
+          # 変更をコミットしてプッシュ
+          git add .
+          git commit -m "Update generated files"
+          git push origin gh-pages 
