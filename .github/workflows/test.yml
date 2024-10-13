@@ -45,11 +45,11 @@ jobs:
           git config --global user.name "GamingChikuwabu"
           git config --global user.email "k.56482525@gmail.com"
           
-          # 無視されているファイルを強制的に追加
-          git add -f target/release/*
+          # 生成物を新しいフォルダに追加
+          git add artifacts/*
 
           # 変更があればコミット
-          git diff --quiet || git commit -m "Add build artifacts"
+          git diff --quiet || git commit -m "Add build artifacts to artifacts folder"
 
           # mainブランチにプッシュ
           git push origin main
