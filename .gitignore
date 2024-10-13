@@ -1,1 +1,6 @@
 target/*
+# target全体を無視
+target/
+
+# 例外として target/release/my_project を追加
+!target/release/*
