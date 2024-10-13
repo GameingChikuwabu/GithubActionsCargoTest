@@ -36,8 +36,8 @@ jobs:
           git config --global user.name "GamingChikuwabu"
           git config --global user.email "k.56482525@gmail.com"
           
-          # 生成物を追加
-          git add target/release/*
+          # 無視されているファイルを強制的に追加
+          git add -f target/release/*
 
           # 変更があればコミット
           git diff --quiet || git commit -m "Add build artifacts"
